@@ -6,6 +6,12 @@ SetWorkingDir(A_ScriptDir) ; Ensures a consistent starting directory.
 apps := Map()
 Loop read, "apps.csv"
 {
+    ; skip empty lines and comments starting with 
+    if (StrLen(A_LoopReadLine) = 0)
+        continue
+    ; skip comments starting with #
+    if (Substr(A_LoopReadLine, 1, 1) = "#")
+        continue
     ; split the line into two parts
     parts := StrSplit(A_LoopReadLine, ",")
     ; the first part is the app name
